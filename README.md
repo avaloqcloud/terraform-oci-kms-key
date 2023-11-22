@@ -3,6 +3,7 @@
 The code provides a reusable Terraform module that provisions a KMS Key on Oracle Cloud Infrastructure.
 
 ## Example Input
+`key.auto.tfvars.json`:
 ```json
 {
   "user_ocid": "ocid1.user.oc1.x",
