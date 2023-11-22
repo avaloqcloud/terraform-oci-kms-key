@@ -2,7 +2,29 @@
 # Terraform OCI KMS Key
 The code provides a reusable Terraform module that provisions a KMS Key on Oracle Cloud Infrastructure.
 
-
+## Example Input
+```json
+{
+  "user_ocid": "ocid1.user.oc1.x",
+  "fingerprint": "x",
+  "tenancy_ocid": "ocid1.tenancy.oc1..x",
+  "region": "eu-frankfurt-1",
+  "private_key_path": "x",
+  "key": {
+    "resource": {
+      "key_id": "ocid1.key.oc1.eu-frankfurt-1.x",
+      "compartment_id": "ocid1.tenancy.oc1..x",
+      "display_name": "my-key",
+      "protection_mode": "HSM",
+      "management_endpoint": "https://x-management.kms.eu-frankfurt-1.oraclecloud.com",
+      "key_shape" : {
+        "algorithm": "AES",
+        "length": 32
+        }
+      }
+  }
+}
+```
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
