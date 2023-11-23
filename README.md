@@ -6,11 +6,6 @@ The code provides a reusable Terraform module that provisions a KMS Key on Oracl
 `key.auto.tfvars.json`:
 ```json
 {
-  "user_ocid": "ocid1.user.oc1.x",
-  "fingerprint": "x",
-  "tenancy_ocid": "ocid1.tenancy.oc1..x",
-  "region": "eu-frankfurt-1",
-  "private_key_path": "x",
   "key": {
     "resource": {
       "key_id": "ocid1.key.oc1.eu-frankfurt-1.x",
