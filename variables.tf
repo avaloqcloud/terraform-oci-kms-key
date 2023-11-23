@@ -1,8 +1,3 @@
-variable "user_ocid" {}
-variable "fingerprint" {}
-variable "tenancy_ocid" {}
-variable "region" {}
-variable "private_key_path" {}
 variable "key" {
   description = "Key input object"
   type = map(object({

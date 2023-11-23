@@ -1,0 +1,7 @@
+Title: OCI KMS Key Resource
+schemaVersion: 1.1.0
+locale: "en"
+variables:
+  key:
+    description: "Key input object"
+    type: map
