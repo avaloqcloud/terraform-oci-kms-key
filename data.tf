@@ -1,8 +1,17 @@
-data "oci_kms_key" "existing_resource" {
-  for_each = {
-    for k, v in var.key : k => v
-    if v.key_id != null
+## Key
+data "oci_kms_keys" "existing_key" {
+  # Required
+  compartment_id      = var.key.compartment_id
+  management_endpoint = var.key.management_endpoint
+
+  # Filter
+  filter {
+    name   = "display_name"
+    values = ["${var.key.display_name}"]
   }
-  key_id              = each.value.key_id
-  management_endpoint = each.value.management_endpoint
+  filter {
+    # check if enabled
+    name   = "state"
+    values = ["ENABLED"]
+  }
 }
