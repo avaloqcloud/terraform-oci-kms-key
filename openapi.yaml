@@ -1,0 +1,66 @@
+openapi: 3.1.0
+info:
+  title: OCI KMS Key
+  description: Represents end-user input based on terraform module 'terraform-oci-kms-key'
+  version: 0.0.1
+components:
+  schemas:
+    key:
+      type: object
+      description: "Key input object"
+      required: 
+        - display_name
+        - compartment_id
+        - key_shape
+      properties:
+        display_name:
+          $ref: "#/components/schemas/display_name" 
+        compartment_id:
+          $ref: "#/components/schemas/compartment_id"
+        key_shape:
+          $ref: "#/components/schemas/key_shape"
+        protection_mode:
+          $ref: "#/components/schemas/protection_mode"
+        defined_tags:
+          $ref: "#/components/schemas/defined_tags"
+        freeform_tags:
+          $ref: "#/components/schemas/freeform_tags"
+    display_name:
+      type: string
+      description: "A user-friendly name for the key."
+    compartment_id:
+      type: string
+      description: "The OCID of the compartment."
+    key_shape:
+      type: object
+      description: "The cryptographic properties of a key."
+      required: 
+        - algorithm
+        - lenght
+      properties:
+        algorithm:
+          type: string
+          description: "The algorithm used by a key's key versions to encrypt or decrypt."
+          pattern: '^(AES|RSA|ECDSA)$'
+        length:
+          type: integer
+          description: "The length of the key in bytes, expressed as an integer. Supported values include the following:
+            AES: 16, 24, or 32
+            RSA: 256, 384, or 512
+            ECDSA: 32, 48, or 66"
+        curved_id:
+          type: string
+          description: "Supported curve IDs for ECDSA keys."
+    protection_mode:
+      type: string
+      description: "The key's protection mode indicates how the key persists and where cryptographic operations that use the key are performed. A protection mode of HSM means that the key persists on a hardware security module (HSM) and all cryptographic operations are performed inside the HSM. A protection mode of SOFTWARE means that the key persists on the server, protected by the vault's RSA wrapping key which persists on the HSM. All cryptographic operations that use a key with a protection mode of SOFTWARE are performed on the server. By default, a key's protection mode is set to HSM. You can't change a key's protection mode after the key is created or imported."
+      pattern: '^(HSM|SOFTWARE)$'
+      default: "HSM"
+    defined_tags:
+      type: string
+      description: "Defined tags for this resource. Each key is predefined and scoped to a namespace"
+      example: "{\"Operations.CostCenter\": \"42\"}"
+    freeform_tags:
+      type: string
+      description: "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace."
+      example: "{\"Department\": \"Finance\"}"
