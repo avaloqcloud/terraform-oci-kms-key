@@ -10,6 +10,7 @@ locals {
       key_shape           = var.key.key_shape
       # Optional
       protection_mode = var.key.protection_mode
+      external_key_reference = var.key.external_key_reference
       defined_tags    = var.key.defined_tags
       freeform_tags   = var.key.freeform_tags
     }
