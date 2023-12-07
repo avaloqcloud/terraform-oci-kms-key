@@ -9,18 +9,19 @@ resource "oci_kms_key" "this" {
     length    = each.value.key_shape.length
 
     #Optional
-    curve_id = each.value.key_shape.curve_id
+    curve_id = try(each.value.key_shape.curve_id, null)
   }
   management_endpoint = each.value.management_endpoint
   #Optional
   defined_tags    = each.value.defined_tags
   freeform_tags   = each.value.freeform_tags
   protection_mode = each.value.protection_mode
-  /*
-  Unhandled Parameters:
-  external_key_reference {
+  dynamic "external_key_reference" {
+    for_each = (each.value.external_key_reference != null) ? each.value.external_key_reference : {}
+    content {
       #Required
-      external_key_id = oci_kms_key.test_key.id
+      #external_key_id = external_key_reference.value.external_key_id
+      external_key_id = each.value.external_key_reference.external_key_id
+    }
   }
-  */
 }

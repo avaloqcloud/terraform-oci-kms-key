@@ -5,15 +5,18 @@ variable "key" {
     compartment_id      = string,
     display_name        = string,
     management_endpoint = string, # comes from vault object
-    # Optional
-    key_shape = optional(object({
+    key_shape = object({
       algorithm = string,
       length    = number,
       curve_id  = optional(string),
-    })),
+    }),
+    # Optional
     protection_mode = optional(string),
     defined_tags    = optional(map(string)),
     freeform_tags   = optional(map(string)),
+    external_key_reference = optional(object({
+      external_key_id = string,
+    }))
   })
   # Validation
   ## protection_mode (if given)
