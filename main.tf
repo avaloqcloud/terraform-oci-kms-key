@@ -20,7 +20,6 @@ resource "oci_kms_key" "this" {
     for_each = (each.value.external_key_reference != null) ? each.value.external_key_reference : {}
     content {
       #Required
-      #external_key_id = external_key_reference.value.external_key_id
       external_key_id = each.value.external_key_reference.external_key_id
     }
   }
