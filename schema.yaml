@@ -4,4 +4,4 @@ locale: "en"
 variables:
   key:
     description: "Key input object"
-    type: map
+    type: object
