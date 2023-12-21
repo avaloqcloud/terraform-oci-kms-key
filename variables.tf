@@ -4,7 +4,7 @@ variable "key" {
     # Required
     compartment_id      = string,
     display_name        = string,
-    management_endpoint = string, # comes from vault object
+    management_endpoint = string, # comes from Vault object
     key_shape = object({
       algorithm = string,
       length    = number,
@@ -14,9 +14,14 @@ variable "key" {
     protection_mode = optional(string),
     defined_tags    = optional(map(string)),
     freeform_tags   = optional(map(string)),
+    /*
+
+      Not managed yet
+
     external_key_reference = optional(object({
       external_key_id = string,
     }))
+    */
   })
   # Validation
   ## protection_mode (if given)

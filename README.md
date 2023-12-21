@@ -2,8 +2,6 @@
 # Terraform OCI KMS Key
 The code provides a reusable and standalone Terraform module that provisions a KMS Key on Oracle Cloud Infrastructure.
 
->⚠️**CAUTION:** Usage of this module assumes no reliance on existing Terraform/ORM state, apply on existing terraform state will remove existng `key` resource if managed in state. ⚠️
-
 ## Example Input
 `key.auto.tfvars.json`:
 ```json
@@ -43,13 +41,12 @@ No modules.
 | Name | Type |
 |------|------|
 | [oci_kms_key.this](https://registry.terraform.io/providers/oracle/oci/5.18.0/docs/resources/kms_key) | resource |
-| [oci_kms_keys.existing_key](https://registry.terraform.io/providers/oracle/oci/5.18.0/docs/data-sources/kms_keys) | data source |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_key"></a> [key](#input\_key) | Key input object | <pre>object({<br>    # Required<br>    compartment_id      = string,<br>    display_name        = string,<br>    management_endpoint = string, # comes from vault object<br>    # Optional<br>    key_shape = optional(object({<br>      algorithm = string,<br>      length    = number,<br>      curve_id  = optional(string),<br>    })),<br>    protection_mode = optional(string),<br>    defined_tags    = optional(map(string)),<br>    freeform_tags   = optional(map(string)),<br>  })</pre> | n/a | yes |
+| <a name="input_key"></a> [key](#input\_key) | Key input object | <pre>object({<br>    # Required<br>    compartment_id      = string,<br>    display_name        = string,<br>    management_endpoint = string, # comes from Vault object<br>    key_shape = object({<br>      algorithm = string,<br>      length    = number,<br>      curve_id  = optional(string),<br>    }),<br>    # Optional<br>    protection_mode = optional(string),<br>    defined_tags    = optional(map(string)),<br>    freeform_tags   = optional(map(string)),<br>    /*<br><br>      Not managed yet<br><br>    external_key_reference = optional(object({<br>      external_key_id = string,<br>    }))<br>    */<br>  })</pre> | n/a | yes |
 
 ## Outputs
 

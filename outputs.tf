@@ -1,4 +1,4 @@
 output "key" {
-  value       = local.output_key["resource"] # flatten using static map key
+  value       = oci_kms_key.this
   description = "Key output object"
 }
